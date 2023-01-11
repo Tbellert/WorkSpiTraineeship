@@ -48,6 +48,8 @@ public class Application {
 		System.out.println("Year Constructed: " + car1.getConstructionYear());
 		System.out.println("Horsepower: " + car1.getHorsepower());
 		System.out.println("Number of Doors: " + car1.getNumberOfDoors());
+
+		System.out.println("Hallo Github!");
 	
 	}
 }

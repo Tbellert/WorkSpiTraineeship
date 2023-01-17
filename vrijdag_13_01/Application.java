@@ -15,7 +15,7 @@ public class Application {
 
 		System.out.println("Webshop online status is currently: " + webshop.IsOnline());
 		
-
+		System.out.println(Webshop.Klant);
 
 	}
 }

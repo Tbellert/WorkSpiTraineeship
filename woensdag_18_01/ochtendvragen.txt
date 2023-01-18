@@ -1,0 +1,177 @@
+
+1. Noem alle primitives.
+
+byte
+short
+int
+long
+char
+float
+double
+boolean
+
+2. Wat wordt er op het scherm geprint?
+class Demo {
+    public static void main(String... args){
+   	 Arts karel = new Arts();
+   	 karel.BelleBellen();
+    }
+}
+abstract class Arts{
+
+}
+class Chirurg extends Arts{
+    void BelleBellen(){
+   	 System.out.println("Hoe gaat het?");
+    }
+
+}
+
+// "Hoe gaat het?"
+
+// Deze vraag had ik niet goed omdat er geprobeerd wordt een abstracte class te instantieren. Daarnaast kent een ouder zijn kinderen niet dus kan de methode BelleBellen() niet gevonden worden.
+
+3. Programmeer een voorbeeld van een Has-A relatie.
+
+class Vogel{
+	// Ei ei = new Ei; 
+	public Ei ei; //ook goed
+}
+class ei{
+
+}
+
+4. Wat is het eerste (impliciete) statement van iedere constructor?
+super()
+
+5. Wat wordt er op het scherm geprint?
+class Demo {  
+    public static void main(String... args){
+   	 System.out.println("Hij doet het");
+   	 KaakChirurg kees = new KaakChirurg();
+   	 kees.BelleBellen(25);
+
+    }
+}
+abstract class Arts{
+    abstract void BelleBellen(int a);
+}
+abstract class Chirurg extends Arts{
+
+
+}
+class KaakChirurg extends Chirurg{
+    void BelleBellen(int a){
+   	 System.out.println("Heb je goed gepoetst?");
+    }
+    void BelleBellen() {
+   	 System.out.println("Heb je slecht gepoetst?");   	 
+    }
+
+}
+
+// "Hij doet het"
+// "Heb je goed gepoetst?"
+
+// Ik had het goed, maar ik snapte niet waarom. Nu wel. Bij een abstracte methode is deze pas bij de eerste concrete vereist.
+
+
+6. Wat wordt er op het scherm geprint?
+
+class Demo {  
+    public static void main(String... args){
+   	 System.out.println(010);
+    }
+}
+
+// 010
+// valt binnen het octale stelsel dus er wordt 8 geprint.
+
+7.
+Wat is autoinitialisatie en wanneer komt het voor?
+
+
+
+8.
+Schrijf een voorbeeld in werkende code van een statische methode succesvol aanroept.
+class Demo {
+	Bank bank - new Bank();
+	bank.setAantal(2);
+}
+class Meubel {
+	
+}
+class Bank extends Meubel {
+	private static int aantal = 1;
+	public static int getAantal() {
+		return aantal;	
+	}
+
+	public static void setAantal(int aantal) {
+		this.aantal = aantal;
+	}
+}
+
+9.
+Noem de accessmodifiers van klein naar groot, en hun effect.
+
+private - alleen toegankelijk voor de class
+default - alleen toegankelijk voor de package (private package)
+protected - toegankelijk voor de class en alle kinderen onder deze class
+public - toegankelijk voor alle packages en classen
+
+10.
+Programmeer een voorbeeld van shadowing.
+
+// kom er even niet uit.
+
+class Meubel {
+	int aantal = 1;
+
+	public void setAantal(int aantal) {
+		
+		
+	}
+}
+
+class Bank extends Meubel {
+	
+	void zitten() {
+		
+	}
+}
+
+class Demo {  
+    public static void main(String... args){
+        Dier dier = new Vogel();
+        
+        if(dier instanceof Vogel) {
+            Vogel temp = (Vogel)dier;
+            System.out.println(temp.snavel);
+            System.out.println("ja een vogel");
+        }else {
+            System.out.println("nee geen vogel");
+        }
+
+    }
+}
+class Dier{
+    
+}
+class Vogel extends Dier{
+    int snavel;
+}
+
+//        Reference Type bepaalt waar je bij kunt
+//        Object Type bepaalt wat hij ZOU kunnen (casten) EN doet (polymorfisme)
+
+class Krokodil extends Dier{
+    
+}
+
+
+
+
+
+
+

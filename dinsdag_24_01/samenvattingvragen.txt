@@ -1,0 +1,237 @@
+Weet ik niet
+
+2. Klasse variabelen zijn variabelen met de modifier static. Deze kun je aanroepen door KlasseNaam.variabele EN objectNaam.variabele, deze laatste is bad practice.
+	- waarom is dit bad practice?
+
+4. In iedere constructor staat impliciet super(), als eerste statement. Wat de nul-parameter constructor van zijn ouders aanroept.
+Iedere klasse heeft een nul-parameter default constructor. Deze verdwijnt zodra de eerste handmatige constructor wordt aangeroepen.
+super.field of super.methode() kan ook. Maar dan roep je geen constructor aan.
+Met this() kun je een andere constructor van je eigen klasse aanroepen.
+
+5. Methodes met Object types in parameters kunnen natuurlijk ingewikkelde grappen uithalen met deze parameters.
+
+
+Plak als eerste even de url naar jouw GitHubAccount
+
+1.
+Welke 3 categorien exceptions zijn er en wat moet je per categorie onthouden?
+
+checked
+un-checked
+errors
+
+
+2.
+Wat wordt er op het scherm geprint?
+class Demo{
+    public static void main(String[] args){
+        char getal = 70;
+        double getal2 = getal;
+        System.out.println(getal2);
+        float getal3 = 20.0;
+        System.out.println(getal3);
+    }
+}
+
+70.0
+20.0
+
+
+3.
+Verzin een ochtendvraag voor je collega-studenten.
+
+	System.out.println("What would you like to do?");
+	System.out.println("1 | Go to the carnival");
+	System.out.println("2 | Staff only");
+	System.out.println("3 | Leave");
+	String menuChoice = input.next();
+			
+	if (menuChoice.toLowerCase() == "1") {
+		System.out.println("Going to carnival");
+	} else if (menuChoice.toLowerCase() == "2") {
+		System.out.println("Enters door to staff only");
+	} else if (menuChoice.toLowerCase() == "3"){
+		System.exit(0);
+	} else {
+		System.out.println("Say what? Wrong input");
+	}
+
+
+
+4.
+Welke 4 geheugen-onderdelen zijn er en wat is er karakteristiek aan?
+
+stack - primitives en object referenties worden op de stack bewaard. Stack heeft een methode. Als de methode klaar is verdwijnt de stack.
+heap - details en inhoud van objecten worden op de heap bewaard. Garbage collector ruimt rommelobjecten op. Wanneer hij dit doet, geen idee. Dit weet je nooit
+pool - wanneer iets geen waarde heeft wordt het aan de null toebedeeld
+
+
+
+pointer - de 'leash' naar een object
+null - 
+
+5.
+Wat wordt er op het scherm geprint?
+class Demo{ 
+    public static void main(String[] args){
+        Dier d = new Kip();
+        d.lopen();
+    }
+}
+class Dier{
+    void lopen(){
+        System.out.println("Dier");
+    }
+}
+
+class Kip extends Dier{
+    int lopen(){
+        System.out.println("kip");
+        return 5;
+    }
+}
+
+kip
+5
+
+
+6.
+Programmeer een werkend voorbeeld van een try-catch statement.
+
+boolean ditWerkt = true;
+
+try {
+	if (ditWerkt) {
+		System.out.println("Doe iets");
+	} else {
+		System.out.println("Doe niets, maar toch wel iets dus");
+	}
+} catch (Exception e) {
+	System.out.println(e);
+	System.out.println("Er ging iets fout.");
+}
+
+7.
+Wat betekend Covariant? Geef een voorbeeld in broncode.
+
+Gelijk zijn aan. In het voorbeeld hieronder is bijvoorbeeld het returntype in class Kip covariant aan het returntype in de class Dier.
+
+class Demo{ 
+    public static void main(String[] args){
+        Dier d = new Kip();
+        d.lopen();
+    }
+}
+class Dier{
+    int lopen(){
+        System.out.println("Dier");
+	return 5;
+    }
+}
+
+class Kip extends Dier{
+	@ overloaded	
+    int lopen(){
+        System.out.println("kip");
+        return 5;
+    }
+}
+
+
+8.
+Wat wordt er op het scherm geprint?
+class Demo{
+    public static void main(String[] args){
+        HooiVork h = new HooiVork();
+        HooiVork h2 = new HooiVork();
+    }
+}
+
+class Bezem{
+    int a = hoi();
+    static int hoi(){
+        System.out.println("in hoi");
+        return 17;
+    }
+}
+class HooiVork{
+    {
+        System.out.println("in iets");
+    }
+    static {
+        System.out.println("iets anders");
+    }
+    HooiVork(){
+        System.out.println("ooit weer");
+    }
+}
+
+iets anders
+in iets
+ooit weer
+iets anders
+in iets
+ooit weer
+
+9. 
+Wat wordt er op het scherm geprint?
+class Demo{ 
+    public static void main(String[] args){
+        Hond hond = new Hond();
+        hond.lopen();
+        hond.lopen(25);
+        System.out.println(hond.a);
+    }
+}
+
+interface Go{
+    int a;
+    public abstract void lopen();
+}
+
+class Hond implements Go{
+
+    public void lopen(){
+        System.out.println("lopen met" + a);
+    }
+    int lopen(int r){
+        System.out.println("in lopen met r");
+        return 17;
+    }
+}
+
+class Hond voldoet niet aan de int a. dus compileert niet.
+methode is al abstract en int a is niet gedefineert.
+
+10.
+Wat wordt er op het scherm geprint?
+class Demo{   
+// veranderd niet meer
+    final static public void main(String[] ab){
+        Trial q = new Trial();
+        Trial w = q;
+        q.a++;
+        new Trial();
+        new Trial();
+        System.out.println(w.b);
+        System.out.println(w.a);
+        System.out.println("Einde");
+    }
+}
+class Trial{
+    Trial(){
+        System.out.println("hoi");
+    }
+     int abc(){
+        System.out.println("ff checken");
+        return a++;
+    }
+     static int a = 22;
+     int b = abc();
+}
+
+Compiled niet. Omdat het een final methode betreft kunnen de variabelen niet meer veranderen.
+
+
+
+

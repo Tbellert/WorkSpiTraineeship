@@ -1,0 +1,368 @@
+Notitiies voor Roy
+
+Les van Felix.
+
+Recap over de lesstof van vorige week met vragenronde. Zie broncode onder.
+
+_______________________________________________________________________________________
+
+class Demo{  
+    public static void main(String[] args){
+        System.out.println("Daar gaat ie");
+        int a = 32;
+        final long b = a;
+        
+        int c = (int)b;
+        
+        int d = 7;
+        System.out.println(d);
+        // declaratie verplicht 1 x
+        int e;
+            // initialisation
+        // assignment oneindig minimaal 1 keer
+        e = 35;
+        
+        int f = 55; // locale variable
+                        // instantieren
+        Fiets fiets = new Fiets();
+        Fiets fiets2 = null;
+        
+        System.out.println(fiets2.snelheid);
+        
+        
+        // byte short int long
+        // float double
+        // boolean
+        // char
+        
+        // STRING
+    }
+}
+class Fiets{
+    int snelheid = 25;  // field  eigenschap attribuut property kenmerk object variable
+    //returntype
+    void fietsen() { // method  functie procedure (default package-private)
+        System.out.println("Ik ben aan het fietsen");
+    }
+                    // parameter
+    // Signature: Het aantal het type en de volgorde van de parameters (methodenaam)
+                // overloading - als de signature ander is
+    void fietsen(int a) {
+        System.out.println("Ik ben nog meer aan het fietsen");
+    }
+}
+// String Wrapper
+class Persoon{
+    // declaratie object variabele ReferenceType
+    //  Has-A   relatie
+    Fiets mijnFiets; //
+}
+
+// Is-A relatie  Inheritance   Covariant
+class Vervoermiddel{
+    
+}
+class Auto extends Vervoermiddel{  // Is-A relatie
+
+}
+
+_______________________________________________________________________________________
+
+Reference types
+
+// reference type // object type
+Dier dier1 = new Konijn();
+
+Mag alleen als het objecttype een covariant is van de reference type.
+
+- has-A relatie
+	Geeft geen richting aan. "Is de trein van mij of ben ik van de trein?"
+
+- is-A relatie / Inheritance / Covariant
+	- staat tegenover de has-A relatie.
+	- Is-A heeft een richting!
+	// konijn dier = ja
+	// konijn konijn = ja
+	// dier konijn = soms wel
+	// konijn olietanken = nee
+	
+	- keyword extends
+		Stel je hebt:
+
+
+Zie ook code hieronder.
+_______________________________________________________________________________________
+
+class Demo{  
+    public static void main(String[] args){
+        System.out.println("Inheritance");
+        // referentie type  // objecttype moet covariant zijn van referentie type
+        Dier dier1 = new Dier();
+        dier1.aantalogen = 25;
+    //    dier1.staart = 15;
+        
+        Konijn k = new Konijn();
+        k.aantalogen = 2;
+        k.staart = 1;
+        
+        Dier dier2 = new Konijn();
+        dier2.aantalogen = 4;
+    //    dier2.staart = 4; // NIET
+        
+        DierenAmbulance da = new DierenAmbulance();
+        da.ophalen(new Dier());
+        da.ophalen(new Konijn());
+        Dier[] dieren = {new Konijn()};
+    }
+}
+
+class Dier{
+    int aantalogen;
+}
+class Konijn extends Dier{
+    int staart;
+}
+
+class DierenAmbulance{
+    void ophalen(Dier dier) {
+        
+    }
+}
+
+_______________________________________________________________________________________
+
+
+Check ook even dit: 
+http://lms.codefounders.nl/lessonModuleDetail/52(sidebar:tags)
+
+Is een samenvatting van alle oneliners/begrippen uit het boek.
+
+_______________________________________________________________________________________
+
+
+Proeftesten op github van Felix
+https://github.com/FelixvL/lastrunjava2110yc/commits/master
+
+Dan kun je per commit drukken op de <>.
+
+Dan krijg je een aantal examenvragen te zien om te maken.
+
+_______________________________________________________________________________________
+
+Felix heeft als het goed is jou toegang gegeven tot de google drive waarin je de ETS testsoftware kan vinden.
+
+Anders vraag Timo even naar de testsoftware ETS.
+Ik kan je dit per mail even toesturen zodat je het kan installeren.
+
+foundation test en test 1 zijn vrijgegeven en die kun je doen. Na overleg met Felix kunnen andere tests vrijgegeven worden!
+
+Practice test is streng verboden! Bovendien kun je de objective-wise tests beter ook niet doen!
+_______________________________________________________________________________________
+
+Roostering leraren
+http://p.codefounders.nl/p
+_______________________________________________________________________________________
+
+Inloggen voor je examen PersonVUE
+https://login.oracle.com/mysso/signon.jsp
+
+
+_______________________________________________________________________________________
+
+
+Override methoden
+
+4 regels
+	1- Signature is hetzelfde als de methode die override wordt
+	2- returntype moet covariant zijn
+	3- accessmodifier mag niet vernauwen --> je mag dus niet van public naar default gaan of van public naar private
+	4- Throws clausule mag geen covariant bevatten of niet
+
+Overriden veroorzaakt POLYMORPHISM
+
+Polymorphism is de neiging de methode uit te voeren die het dichts bij het OBJECTTYPE ligt.
+
+
+Shadowing
+
+Als twee variabelen beschikbaar zijn, is de kleinste varaibele degene die gekozen worden.
+Lees ook scope.
+
+Als een class een property heeft en een methode. 
+Deze methode heeft een parameter met dezelfde benaming als de class property.
+Wanneer de parameter in de methode wordt aangeroepen zal deze dus de werken met de parameter en niet met de class property.
+De parameter is hierin "de kleinste".
+
+
+Abstract
+- classen die we ons niet kunnen voorstellen.
+- categorieen
+- kun je niet instantieren
+- wel gebruiken als reference type
+
+
+Abstract methods
+- geen body
+- class moet ook abstract zijn
+- elke child heeft de methode nodig om te compilen.
+
+
+Zie code hieronder.
+_______________________________________________________________________________________
+
+
+class Demo{
+    static public void main(String[] ab){
+        Stoel s = new Stoel();
+        s.verstellen(14);
+        System.out.println(s.hoogte);
+        Konijn d= new Konijn();
+        d.voortbewegen();
+        System.out.println(d.aantalogen);
+        Meubel m = new Sofa();
+    }
+}
+
+// 1 body weg
+// 2 de class moet abstract worden
+// 3 in de child onstaat een implementatie verplichting
+abstract class Meubel{
+    abstract Dier verhuizen(int a);
+}
+
+class Sofa extends Meubel{
+    Dier verhuizen(int v) {
+        System.out.println("verhuizen in stoel");
+        return new Dier();
+    }
+}
+
+class Tafel extends Meubel{
+    Dier verhuizen(int t) {
+        return new Dier();
+    }
+}
+
+// shadowing
+class Dier{
+    int aantalogen = 27;
+    void voortbewegen() {
+        System.out.println("bewegen in dier"+aantalogen);
+    }
+}
+class Konijn extends Dier{
+    int staart;
+
+    void springen() {
+        System.out.println("springen in dier"+aantalogen);
+    }
+    void voortbewegen() { 
+        System.out.println("bewegen in konijn"+aantalogen);
+    }
+}
+
+class Stoel{
+    int hoogte = 15;
+    void verstellen(int hoogte) {
+        System.out.println(hoogte);
+        this.hoogte = hoogte;
+    }
+    void ietsanders() {
+//        System.out.println(gewicht);
+    }
+}
+_______________________________________________________________________________________
+
+Casten
+Hierbij beloof je plechtig dat iets in een bepaalde variabele aanwezig is of kan zijn.
+Casten doe je altijd in een omhulsel (if/else) zodat het programma/applicatie niet vastloopt.
+
+
+Final
+variabelen die niet meer veranderen.
+- geboortedatum
+- elke mens heeft botten
+- elk mens heeft hersenen (soms twijfel ik er wel eens aan)
+
+static
+variabelen die voor iedereen gelijk zijn
+- tempertatuur op een bepaalde plek
+- kalenderdag
+- wetgeving
+
+static final
+variabelen die voor alles en iedereen gelijk zijn en niet meer veranderen
+- historische momenten
+- natuurwetten
+
+
+Static variable is the bereiken via het objectreference, maar beter pas je het daar niet aan.
+
+_______________________________________________________________________________________
+
+
+Opdracht na aanleiding van de lesstof
+
+//1 maak een klasse
+//2 maak een object
+//3 maak een variabele van een object type en instantieer het object en ken deze toe
+//4 geef in de klasse een kenmerk aan (field)
+//5 geef in de klasse een methode aan
+//6 vul van een object het kenmerk met een waarde van een kenmerk
+//7 roep een methode van een object aan
+//----- inleveren
+//8 maak een methode met een parameter (int string)
+//9 maak een methode met een returntype (int string)
+//10 roep ze aan en vang het resultaat op
+//11 -----update inleveren
+//12 maak een has-a relatie
+//13 maak een parameter van een eigenKlasseType
+//14 maak een returnType van een eigenKlasseType
+//15 maak een eigen constructor
+//16 roep de methode succesvol aan
+//17 vul de has-a relatie met een object
+//18 vang het ge-returnde object op in een variabele
+//--- update inleveren
+//19 overloading rijde()  rijden(6)  rijden("amsterdam",70)
+//20 shadowing
+//21 construtor
+
+===================================
+
+//1 maak een statische field
+//2 maak een final field
+//3 maak een static final field
+//4 wijzig de waarde van een statische field
+//5 toon via een Klasse een waarde van een field
+//6 toon via een Object een waarde van een field
+///-----------Update inleveren
+//7 maak een IS-A relatie
+//8 maak in de parent een field
+//9 maak ik de child een field
+//10 refereer via de parent instantieer via de Child
+//11 check waar je wel en niet bij kunt
+///==========Update inleveren
+//12 Maak een hulpclasse met een methode met de parent als Parameter
+//13 Maak een methode met de parent als returntype
+//14 Vang het resultaat op in een variabele
+//=====Optioneel
+//15 casten
+//16 gedrag in constructor
+//17 overriding
+
+==========================
+
+//1 maak een methode in de parent class
+//2 maak een object van de childclass en roep die aan
+//3 override de methode in de childclass
+//4 Zie dat Polymorfisme werkt
+// -------update inleveren
+//5 maak een klasse abstract, zie dat instantieren niet meer kan
+//6 maak een methode abstract, zie de drie effecten 
+//7 probeer te casten
+//8 probeer instanceof in te zetten
+//9 verwerk dit een een realistische hulpklasse (DierenAmbulance MeubelMaker)
+
+
+
+

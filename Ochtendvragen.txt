@@ -1,0 +1,214 @@
+1.
+Wat is jouw vraag voor je collega-studenten?
+//		Wat wordt er op het scherm geprint?
+				char charOne = 'a';
+				System.out.println(charOne);
+				System.out.println(charOne + charOne);
+
+//		en nu?
+
+				char charTwo = 'a';
+				System.out.println(charTwo);
+				System.out.println(charTwo * charTwo);
+
+2.
+Wat zijn de vier regels bij overriding?
+- signature moet hetzelfde zijn
+- mag niet in access level verkleinen
+- throws clausule mag een covariant bevatten of niet --> BIJ CHECKED EXCEPTION
+- returntype moet covariant zijn. --> COVARIANT = AANWEZIGHEID VAN EEN IS-A RELATIE
+
+3.
+Programmeer een stuk broncode dat mij duidelijk maakt wat er bedoeld wordt met:
+Links bepaalt waar je bij kunt, rechts bepaalt wat je zou kunnen en doet
+
+class App {
+	public static void main(String[] args) {
+	Animal a = new Weasel();
+	// links bepaald welke waarden ik bij kan.
+	a.legs;
+
+	// Door polymorphism voert hij de actie uit die het dichts bij het object ligt.
+	a.eat();
+		
+	}
+}
+
+class Animal {
+	int legs 4;
+	void eat() {
+	}
+}
+
+class Weasel extends Animal {
+	@override
+	void eat() {
+	}
+}
+
+
+4.
+Wat wordt er op het scherm geprint?
+class Demo{           	 
+    public static void main(String[] args){
+   	 int[][] oeps[] = {{{},{4,3,2},{5}},{},null,{null, {4,5,6}}};
+   	 int[] ff = oeps[3][1];
+   	 System.out.println(ff[2]);
+   	 System.out.println(oeps[0][2][1]);
+   	 System.out.println("gelukt");
+    }    
+}
+
+compileert niet omdat oeps als tweedimensionaal assigned wordt.
+
+
+5.
+Wat wordt er op het scherm geprint?
+class Demo{
+    public static void main(String[] args) {
+   	 lopen();
+    }
+    static void lopen(){
+   	 System.out.println("in lopen");
+   	 new Fiets().fietsen(6);
+    }
+}
+
+class Fiets{
+    void fietsen(int getal){
+   	 System.out.println(getal+getal+"fietsen"+getal+getal);
+    }
+}
+
+Class aangemaakt, op heap object aangemaakt. Geen declaratie op stack en geen pointer. Dus niks refereert naar dit object? object word door de garbage collector ogeruimd?
+
+6.
+Wat zijn de verschillen tussen primitives en reference types?
+
+Primitives 'leven' enkel op de stack zowel declaratie als waarde.
+geen garbage collector
+veel operators mogelijk
+geen methoden en fields
+maar 8 primitives
+
+
+Reference types hebben hun declaratie op de stack en het object wordt op de heap aangemaakt. De pointer wijst van de declaratie naar de heap.
+zelf verzinnen
+garbage collector
+geen operators mogelijk
+methoden en fields
+
+copy by value of copy by reference
+
+7.
+Wat wordt er op het scherm geprint?
+class Demo{
+    public static void main(String[] args) {
+   	 System.out.println(args.length);
+   	 lopen();
+    }
+    void lopen(){
+   	 System.out.println("in lopen");
+    }
+}
+
+0
+in lopen
+
+ik twijfel of de statische methode wel een non statische methode mag aanroepen maar volgens mij gaat dit goed zo...
+
+8.
+Wat wordt er op het scherm geprint?
+class Demo{           	 
+    public static void main(String[] args){
+   	 System.out.println("start");
+   	 Groen g = new Groen();
+   	 System.out.println(g.rood.a);
+   	 System.out.println("kleur");
+   	 g.rood.a();
+    }    
+}
+
+class Groen{
+    static LightRood rood;
+    Groen(){
+   	 rood = new LightRood();
+    }
+}
+
+class Rood{
+    static int a = 34;
+    Rood(){
+   	 System.out.println("Blauw");
+    }
+    int a(){
+   	 System.out.println("lightrood");
+   	 return 66;
+    }
+}
+
+class LightRood extends Rood{
+    static int a = 35;
+    int a(){
+   	 System.out.println("rood");
+   	 return 88;
+    }
+}
+
+start
+Blauw
+35
+kleur
+rood
+
+
+Welke statische waarden krijgen nu voorrang?
+En mag dit wel?
+
+vragen...
+
+
+9.
+Wat is het eerste statement van iedere constructor?
+super()
+
+10.
+Wat wordt er op het scherm geprint?
+class Demo{
+    public static void main(String[] args) {
+   	 lopen(new Fiets());
+    }
+    static void lopen(Fiets bike){
+   	 System.out.println("in lopen");
+   	 System.out.println("lopen met "+bike.snelheid);
+   	 bike.snelheid = new Fiets().fietsen(6);
+   	 System.out.println("lopen met "+bike.snelheid);
+   	 bike.fietsen(9);
+    }
+}
+
+class Fiets{
+    int snelheid = 3;
+    int fietsen(int snelheid){  
+   	 System.out.println("fietsen met "+snelheid);
+   	 return 8;
+    }
+}
+
+bike.snelheid = new Fiets().fietsen(6);
+Dit hierboven gaat niet werken.
+Je maakt een nieuw object aan in een instance variable die alleen een int wil ontvangen.
+compileert niet.
+
+
+
+Ok$7SpzaX$
+
+
+
+
+
+
+
+
+

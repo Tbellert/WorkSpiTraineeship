@@ -1,0 +1,338 @@
+
+
+Link naar examen boeken
+https://mylearn.oracle.com/ou/learning-path/java-se-8-programmer-associate/40821
+
+Link naar examen inschedulen
+https://mylearn.oracle.com/ou/exam/java-se-8-programmer-i-1z0-808/40805/110679/170387/register
+
+Link voor inboeken
+https://mylearn.oracle.com/ords/r/c/ecd/home
+
+
+1.
+Wat wordt het op het scherm geprint?
+
+class Demo{ 
+    public static void main(String[] args){
+        System.out.println("Hij doet het");
+        Jas jas = new Jas();
+        Jas jas2 = new Jas();
+    }    
+}
+
+class Kleding{
+    Kleding(){
+        System.out.println("in Kleding");
+    }
+}
+class Jas extends Kleding{
+    int knoop = knopen();
+    static int knopen(){
+        System.out.println("in knopen");
+        return 17;
+    }
+    Jas(){
+        System.out.println("in Jas");
+    }
+}
+
+Hij doet het
+in Kleding
+in Jas
+in knopen
+in Jas
+in knopen
+
+// Hij ROEPT ALTIJD de super() aan van zijn parent.
+// class laden
+// statische methoden en fields
+// Daarna de fields
+// vervolgens de constructor van de sub.
+
+Hij doet het
+in Kleding
+in knopen
+in Jas
+in Kleding
+in knopen
+in Jas
+
+2.
+Wat wordt het op het scherm geprint?
+
+class Demo{   
+    public static void main(String[] args){
+        System.out.println("Hij doet het");
+        Kleding jas = new Jas();
+        System.out.println(jas.knoop);
+        jas.knopen();
+
+    }    
+}
+
+class Jas extends Kleding{
+    int knoop = 55;
+    int prijs = 80;
+    int knopen(){
+        System.out.println("in knopen " + prijs);
+        System.out.println("in knopen kleding "+knoop);
+        return 17;
+    }
+}
+class Kleding{
+    int prijs;
+    int knoop = 70;
+    int knopen(){
+        System.out.println("in knopen kleding "+knoop);
+        System.out.println("in knopen kleding "+prijs);
+        return 18;
+    }
+}
+
+Hij doet het
+70
+in knopen 80
+in knopen kleding 55
+
+3.
+Wat wordt het op het scherm geprint?
+
+class Demo{
+    public static void main(String[] args){
+        System.out.println("a");
+        B b = new B();
+        b.ben();
+    }    
+}
+
+class B{
+    int b;
+    void ben(){
+        System.out.println("Ben toch");
+        throw new RuntimeException();
+    }
+
+}
+
+a
+ben toch
+exception
+
+
+4.
+Wat wordt het op het scherm geprint?
+
+class Demo{
+    public static void main(String[] args){
+        System.out.println("a");
+        B b = new R();
+        b.ben();
+        System.out.println("b");
+
+    }    
+}
+class B{     
+    int b;
+    void ben() throws Exception{  
+        System.out.println("Ben toch");
+        throw new Exception();    
+    }
+}
+class R extends B{       
+    int b = 30;
+    void ben(){    
+        System.out.println("wtf");
+    }
+
+}
+
+// de methode ben() in class B heeft een waarschuwingbordje voor een exception. Welke een checked exception betreft.
+Daarom gaat de compiler moelijk doen omdat deze niet opgevangen wordt door de main methode. en zal de main methode dus of een throws clausule moeten hebben of de methode call in een try/catch gezet worden!
+
+// kijk dus naar het Referentietype met exceptions
+
+5.
+Wat wordt het op het scherm geprint?
+
+class Demo{ 
+    public static void main(String[] args){
+        Fiets f = new Fiets();
+        Fiets f2 = f;
+        System.out.println("eerste " + f2.a);
+        lopen(f);
+        System.out.println("einde " + f2.a);
+    }
+    static void lopen(Fiets x){
+        x.a = 25;
+        System.out.println("we zijn hier");
+    }
+}
+class Fiets{
+    int a = hoi();
+
+    static int hoi(){
+        System.out.println("hoi");
+        return 7;
+    }
+}
+
+hoi
+eerste 7
+we zijn hier
+einde 25
+
+
+
+6.
+Wat wordt het op het scherm geprint?
+
+class Demo{   // UX
+    public static void main(String[] args){
+        Fiets f = new MountainBike();
+        f.fietsen();
+        System.out.println("einde" + f.snelheid);
+        FietsenMaker joost = new FietsenMaker();
+        joost.maken(f.snelheid);
+        System.out.println(f.snelheid);
+        System.out.println(joost.t.snelheid);
+        System.out.println(new FietsenMaker().maken(3).snelheid);
+    }
+}
+class FietsenMaker{
+    Fiets t = new Fiets();
+
+    Fiets maken(int q){    
+        t.snelheid += q + 10;
+        return t;
+    }
+}
+
+class Fiets{
+    int snelheid = 5;
+    void fietsen(){
+        System.out.println("f in f");
+    }
+}
+class MountainBike extends Fiets{
+    int snelheid = 15;
+    void fietsen(){
+        System.out.println("f in mb");
+    }
+}
+
+compileert niet, naar welke snelheid refereert new FietsenMaker().maken(3).snelheid);
+
+f in mb
+einde 5
+20
+5
+20
+18
+
+
+7.
+Wat wordt het op het scherm geprint?
+
+public class Demo {
+    public static void main(String[] args) {
+        Testje t = (a, c) -> a.length() > 5 && c;
+        boolean ab = t.gaan("true",true);
+        System.out.println(ab);
+    }
+}
+@FunctionalInterface 
+interface Testje{
+    boolean gaan(String a, boolean b);
+}
+
+false
+
+
+8.
+Wat wordt het op het scherm geprint?
+
+class Demo{  
+    public static void main(String[] args){
+        System.out.println("Hij doet het");
+        Jas jas = new Jas();
+    }    
+}
+
+
+class Jas extends Kleding{
+    int knoop = knopen();
+    int knopen(){
+        System.out.println("in knopen");
+        return 17;
+    }
+    Jas(){
+        System.out.println("in Jas");
+    }
+}
+class Kleding{
+    int prijs;
+    Kleding(int getal){
+        System.out.println("In Kleding");
+        prijs = getal;
+    }
+}
+
+Hij doet het
+in knopen
+in jas
+
+
+9.
+Wat wordt het op het scherm geprint?
+
+class Demo{  
+    final static public void main(String[] ab){
+        lopen(new VB().gaan(true));
+        System.out.println("einde ");
+    }
+    static void lopen(double v){
+        System.out.println("lopen 1-"+v);
+    }
+    static void lopen(int a){
+        System.out.println("lopen 2-"+a);        
+    }
+}
+
+class VB{
+    int a = gaan(false);
+    int gaan(boolean t){
+        if(t){
+            System.out.println("lopen 3 ");
+            return 7;
+        }else{
+            System.out.println("lopen 5 ");
+        }
+        return 9;
+    }
+    float gaan(char w){
+        System.out.println("lopen 4 ");
+        return 6.3f;
+    }
+}
+
+lopen 5
+lopen 3
+lopen 2 - 7
+einde
+
+
+10.
+Wat wordt het op het scherm geprint?
+
+class Demo{  
+    final static public void main(String[] ab){ 
+        int a = 'e';  // 101 in ascii table
+        char c = (char)a++;
+        long d = new Long(a++);
+        float e = new Float(25.3);
+        System.out.println(d);
+    }
+}
+
+

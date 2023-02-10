@@ -1,0 +1,366 @@
+Voorbeelden Samenvatting Felix
+_______________________________________________________________________________________________________________
+Wat is een package?
+Een package is een folder met bestanden. Je mag een package 1x toevoegen en moet de eerste statement zijn in een bestand.
+
+_______________________________________________________________________________________________________________
+Wat is een import?
+Een import is een statement die het gebruiken van de bestanden in een bepaalde package mogelijkmaakt.
+Ook kun je statische fields en methoden toevoegen maar dan moet wel de import static worden.
+het aantal imports is oneindig.
+* duidt aan dat je alle files vanuit een bepaalde package importeerd.
+
+_______________________________________________________________________________________________________________
+Java.lang wordt als default geimporteerd.
+
+_______________________________________________________________________________________________________________
+Noem 3 belangrijke non-access modifiers en hun impact op klassen, methoden en fields.
+- final | 
+	- klasse | Final class kan niet geextend worden
+	- methode | Dit is de laatste vorm van deze methode en kun je niet meer overriden.
+	- field | Deze variabele kan niet meer veranderen
+- static |
+	- klasse | een class is op zichzelf al statisch
+	- methode | Statische methoden horen bij de classe en niet bij het object.
+	- field | Statische velden zijn voor elk object hetzelfde.
+- abstract | 
+	- klasse | abstracte class kan niet geinstantieerd worden.
+	- methode | Indien abstracte methode, class ook abstract. Deze methode moet door alle kinderen geimplementeerd worden en mag geen doy hebben.
+	- field | betaat eigenlijk niet.
+_______________________________________________________________________________________________________________
+welke Access modifiers van klein naar groot zijn er en welke eigenschappen hebben ze?
+
+private - alleen de class
+default - package private, dus alleen de classen in dezelfde package
+protected - deze package en alle kinderen van deze klasse
+public - iedereen
+_______________________________________________________________________________________________________________
+Codeer 3 variaties van de main methode zodat ze wel compileren.
+
+static public void main(String[] args){}
+
+public static void main(String args[]){}
+
+public static void main(String... args){}
+
+_______________________________________________________________________________________________________________
+Noem alle primitives, hun wrapper en het aantal hun grootte en hun default waarde
+
+- byte | numberic signed integer | 8bit | 0
+- short | numberic signed integer | 16 bit | 0
+- int |numberic signed integer | 32 bit | 0
+- long | numberic signed integer | 64 bit | 0
+- boolean | Boolean | geen grootte | false
+- float | numberic signed floating point | 32 bit | 0.0
+- double | numberic signed floating point| 64 bit | 0.0
+- char | numeric unsigned Character	| 16 bit | 0
+_______________________________________________________________________________________________________________
+Wat is een Object reference
+- een referentie naar de instantie van een class
+- objecten hebben altijd een default waarde van 'null'
+_______________________________________________________________________________________________________________
+Hoe vergelijk je primitives? En hoe vergelijk je Objecten? En waarom is dit anders?
+- primitives vergelijk je met ==
+- objecten vergelijk je met .equals()
+
+Dit is omdat een object op de heap wordt aangemaakt en de declaratie van het object op de stack. De referentie naar het object wijst (pointer)
+naar een locatie op de heap. Er is maar 1 object dus zij geven hun locatie door.
+
+primitives worden aangemaakt op de stack. zowel de declaratie als de assignment. Dus de hele initialization. (type, naam en waarde)
+primitives geven een kopie van zichzelf mee.
+_______________________________________________________________________________________________________________
+Waarom is een string immutable? Wat is het? Codeer hier een voorbeeld van.
+
+String is immutable. Dat wil zeggen dat je de waarde van een gemaakt String niet kan aanpassen of veranderen.
+Strings worden wanneer ze gemaakt worden opgeslagen in de pool. Deze pool is een magazijn van Strings waar de compiler eigenlijk kijkt of er matches zijn
+en dan voor het gemak eerst de matches uitpakt zodat hij niet een nieuwe zelfde string hoeft aan te maken.
+
+Stel:
+
+//1 String een = "een";
+//2 String twee = "twee";
+//3 een.concat(twee);
+//4
+//5 String drie = een.concat(twee);
+//print eentwee
+//7		
+//8 System.out.println(een);
+//print een
+
+Verschil tussen bovenstaand is dat op //5 een nieuwe variabele wordt aangemaakt en je dus praktisch een resultaat van een bewerking opslaat.
+De waar van String op //1 is echter niet aangepast.
+_______________________________________________________________________________________________________________
+Wat is de garbage collector en wat doet het?
+
+De GC is een opruimprogramma van java. Hij kijkt wel objecten elligable zijn voor collection.
+Wanneer er niks meer refereert naar een object of een object als 'null' wordt aangewezen dan mag deze opgeruimd worden.
+Je weet alleen NOOIT wanneer dit is!
+_______________________________________________________________________________________________________________
+Codeer een voorbeeld van widening
+
+Widening is het stoppen van een kleine variabele in een grote.
+klein datatype < groot datatype
+
+int a = 4;
+long b = a;
+_______________________________________________________________________________________________________________
+Codeer een voorbeeld met narrowing
+
+met narrowing stop je een grotere variabele in een kleinere variabele. Dit doe je door middel van casten, het kan dus zijn dat je data verliest door dit te doen.
+
+long a = 500;
+int b = (int) a;
+______________________________________________________________________________________________________
+Wat is autoboxing? Codeer hier een voorbeeld van
+
+Het automatisch converteren van de compiler van primitieven naar hun bijbehorende wrapper class.
+In onderstaand zal de compiler de waarde van 'a' in de wrapper Integer plaatsen.
+
+int a = 5;
+_______________________________________________________________________________________________________________
+Wat is unboxing? Codeer hier een voorbeeld van
+
+Het omgekeerde van autoboxing. Je haalt ze nu "uit de doos".
+
+De doos is in deze symboliek de wrapper class Integer.
+De waarde haal je er uit door onderstaand:
+
+Integer d = new Integer(25);
+int e = d;
+_______________________________________________________________________________________________________________
+Wat is shadowing? Codeer een voorbeeld
+
+Bij shadowing pakt de methode altijd de waarde met het kleinste getal.
+Door this.getal kan het instance variable bereikt worden.
+Wanneer er geen this. voorstaat refereert hij dus automatisch naar de parameter 'getal'
+
+class A {
+	private int getal = 10;
+	public void getGetal(int getal) {
+		this.getal = getal;
+	}
+
+}
+_______________________________________________________________________________________________________________
+Wat is overloaden? Codeer een voorbeeld
+
+Een methode met dezelfde naam, maar met andere signature (aantal en typen parameters) 
+
+class Demo {
+	public static void main(String[] args) {
+		A a = new A;
+		a.lopen();
+		a.lopen("lopen");
+		a.lopen(3);
+	}
+}
+
+class A {
+	void lopen(){}
+
+	void lopen(String string){
+		System.out.println("lekker " + string);
+	}
+
+	void lopen(int getal){
+		System.out.println(getal +" keer lopen");
+	}
+}
+_______________________________________________________________________________________________________________
+Wat is overriden? Noem 4 karaktereigenschappen en codeer een voorbeeld
+
+Het geven van ander gedrag aan dezelfde methode.
+
+1. Returntype moet covariant zijn
+2. Throws clausule moet covariant zijn of niet
+3. Signature moet hetzelfde zijn
+4. Access modifier mag niet verkleinen
+
+class Demo {
+	public static void main(String[] args) {
+		A a = new B;
+		a.lopen();
+	}
+}
+
+class A {
+	void lopen(){}
+}
+class B extends A {
+	void lopen(){}
+}
+
+_______________________________________________________________________________________________________________
+Wat is polymorphisme?
+
+De neiging om de methode uit te voeren die het dichts bij het objecttype komt.
+
+Zie voorbeeld van overriden. Er is hier sprake van polymorphisme.
+Links bepaald welke waarden ik kan bereiken en recht wat ik zou kunnen doen en mag.
+
+_______________________________________________________________________________________________________________
+Wat is encapsulation? Codeer een voorbeeld
+
+Een private field met public methoden (getters en setters). Zodat je controle houdt over wat er gebeurd.
+
+class Demo {
+	public static void main(String[] args) {
+		A a = new A;
+		a.getGetal();
+	}
+}
+
+class A {
+	private int getal = 10;
+
+	public int getGetal(){
+		return getal;
+	}
+	public void setGetal(int getal){
+		this.getal = getal;
+	}
+}
+
+_______________________________________________________________________________________________________________
+Hetgeen dat gereturned wordt MOET een covariant van het returntype zijn.
+BELANGRIJK: Als een methode met een returntype wordt aangeroepen, veranderd de aanroeping in het resultaat van de methode.
+
+public class Demo {
+	public static void main(String[] args) {
+		Leerling leerling = new Leerling();
+		int leeftijdLeerling = leerling.getLeeftijd();
+		
+		Primaat a = new Berberaap();
+		Primaat nieuweprimaat = a.maakKinderen();
+		// returntype berberaap uit methode maakKinderen is covariant aan Primaat. Omdat Berberaap extends Primaat.
+		
+		System.out.println(-4 - 4);
+	}
+}
+
+class Leerling {
+	private int leeftijd = 15;
+
+	public int getLeeftijd() {
+		return leeftijd;
+	}
+
+	public void setLeeftijd(int leeftijd) {
+		this.leeftijd = leeftijd;
+	}
+}
+	
+class Primaat {
+	private int aantalPoten = 2;
+
+	public int getAantalPoten() {
+		return aantalPoten;
+	}
+
+	public void setAantalPoten(int aantalPoten) {
+		this.aantalPoten = aantalPoten;
+	}
+	Berberaap maakKinderen() {
+		return new Berberaap();
+	}
+	
+}
+class Berberaap extends Primaat{
+	Berberaap maakKinderen() {
+		System.out.println("Poept kind uit");
+		return new Berberaap();
+	}
+}	
+	
+_______________________________________________________________________________________________________________
+
+
+Als je een functie wil inzetten moet je extra haken zetten.
+(Rechts)mijnDier.mijnMethode(); Cast het resultaat van de methode van mijn Dier. Waarschijnlijk FOUT.
+((Rechts)mijnDier).mijnMethode(); Cast het mijnDier naar een Rechts, en kan dan de methode van rechts aanroepen.
+
+public class Demo {
+	public static void main(String[] args) {
+			Dier d = new Kat();
+			Kat k = (Kat)d;
+			k.mijnmethode();
+			((Kat) d).mijnmethode();
+//		(Rechts)mijnDier.mijnMethode(); Cast het resultaat van de methode van mijn Dier. Waarschijnlijk FOUT.
+//			int a = k.abc(); // neen.
+			int e = (int)k.abc();
+	}
+}
+
+class Dier {
+
+}
+
+class Kat extends Dier {
+	void mijnmethode() {
+		System.out.println("Ik ben een kat");
+	}
+	long abc() {
+		System.out.println("hoi");
+		
+		return 7;
+	}
+}
+_______________________________________________________________________________________________________________
+
+Oefen Loops
+
+class Demo{    
+    final static public void main(String[] ab){ 
+        int g = 5;
+        int b, c = g++;
+        //--
+        for(int r = -2 ; r < 4; r++) {
+            System.out.println(r++);
+            System.out.println(b = g++);
+            if(r == 0) {
+                continue;
+            }
+            System.out.println(g);
+            System.out.println(b);
+        }
+        System.out.println("einde");
+    }
+}
+============================
+
+class Demo{    
+    final static public void main(String[] ab){ 
+        int s = 14;
+        s += 2;
+        int y = --s;
+        boolean waar = false;
+        do {
+            waar = !waar;
+            System.out.println(y);
+            System.out.println(s--);
+            System.out.println(--s);
+            System.out.println("rondje");
+        }while(waar);
+        System.out.println("einde");
+    }
+}
+
+===================================
+
+class Demo{    
+    final static public void main(String[] ab){ 
+        int i = 24;
+        int j = i -= 12;
+        if (i == 13)
+            j++;
+            j++;
+        for(int t = 6; t > 5; t--) {
+            System.out.println(i);
+            System.out.println(j);
+            if(t++ > 12)
+                System.out.println("hoi");
+                break;
+        }
+        System.out.println("einde");
+    }
+}

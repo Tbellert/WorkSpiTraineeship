@@ -1,0 +1,175 @@
+1.
+Wat is jouw vraag voor je klasgenoot?
+
+Wat wordt er op het scherm geprint?
+
+class Demo {
+	int[] array = {3,4,5}
+	public void doeIets() throws RuntimeException {
+		try {
+			for (int number=0; number<4; number++) {
+				System.out.println("Loop")
+			}
+			
+		} catch (ArrayOutOfBoundsException e) {
+			Throw ArrayOutOfBoundsException e;
+		} catch (RuntimeException e1) {
+			Throw RuntimeException e1
+		} finally {
+			System.out.println("Weet je dit heel zeker?");
+		}
+	}
+}
+
+2.
+Is het volgende woord een reserved word?
+String
+
+Nee. String is een classe die afstamt van object
+
+3.
+Is het volgende woord een reserved word?
+instanceOf
+
+Nee || reserved words hebben geen hoofdletter!!!
+
+4.
+Wat wordt er op het scherm geprint?
+class Demo {
+int a = fietsen();
+static int b = new Koe().melken();
+public static void main(String... args) {
+System.out.println("melk");
+System.out.println(new Demo().a);
+}
+int fietsen(){
+System.out.println("gaan");
+return 7;
+}
+}
+class Koe{
+static int melken(){
+System.out.println("gaos");
+return 14;
+}
+}
+
+
+gaos
+melk
+gaan
+7
+
+// schrijf goed voor jezelf uit hoe de volgorde is.
+// eerst classen laden, dan statische methoden en aanroepen.
+
+5.
+Wat wordt er op het scherm geprint?
+class Demo {
+public static void main(String... args) {
+Verhuisbaar b = new Bank();
+b.verhuizen();
+}
+}
+interface Verhuisbaar{
+void verhuizen() {
+System.out.println("verhuizen die handel");
+}
+}
+class Bank implements Verhuisbaar{
+
+}
+
+Niks? De methode verhuizen is eigendom van de interface en daar kan de bank niet bij?
+
+// compileerd dus niet. Je zat goed met default maar dit moet er in een interface expliciet bij geschreven worden.
+// wanneer de methode static is zou je moeten refereren op interface niveau.
+// Dus Verhuisbaar.verhuizen();
+
+6.
+Welke drie categorieen exceptions zijn er en wat is belangrijk per categorie om te
+onthouden?
+
+unchecked exceptions (Runtime exceptions) | tijdens runtime, meeste hoofdpijn, programmeerfout, compiler checkt niks.
+	// oooh chill. compiler regelt het wel.
+checked exceptions | Compiler checkt vanalles en geeft eventueel fouten
+	// REGELS CHECKEN
+	// check throws / throw
+	// try / catch()
+errors | je code stopt | De compiler checkt niks. Eigen stamboom.
+
+
+7.
+Wat wordt er op het scherm geprint?
+class Demo {
+public static void main(String... args) {
+System.out.println("go");
+Boombox b = new Boombox();
+b.inkopen();
+System.out.println("no");
+}
+}
+class Boombox{
+void inkopen() {
+throw new VerkochtException();
+}
+}
+class VerkochtException extends RuntimeException{}
+
+go
+exception
+no
+
+// loopt vast doordat de exceptions niet afgehandeld wordt in de methode en dus naar de main schiet.
+
+8.
+class Demo {
+public static void main(String... args) {
+System.out.println("so");
+Boombox b = new Boombox();
+b.inkopen();
+System.out.println("jo");
+}
+}
+class Boombox{
+void inkopen() {
+throw new VerkochtException();
+}
+}
+class VerkochtException extends Exception{}
+
+so
+Exception
+jo
+
+// compileert dus niet. omdat dit geen runtimeexception is maar een checked exception.
+
+9.
+Is het volgende woord een reserved word?
+unsigned
+
+50/50. Nee.
+
+10.
+Programmeer een voorbeeld van een multi-catch blok.
+
+class Demo {
+	int[] array = {3,4,5}
+	public void doeIets() throws RuntimeException {
+		try {
+			for (int number=0; number<4; number++) {
+				System.out.println("Loop")
+			}
+			
+		} catch (ArrayOutOfBoundsException e) {
+			Throw ArrayOutOfBoundsException e;
+		} catch (RuntimeException e1) {
+			Throw RuntimeException e1
+		} finally {
+			System.out.println("Weet je dit heel zeker?");
+		}
+	}
+}
+
+
+// je doet dit nu met runtime exceptions, dus probeer dit de volgende keer met exceptions (checked exceptions) te doen.

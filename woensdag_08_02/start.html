@@ -1,0 +1,27 @@
+<style></style>
+
+<script>
+
+const voornaam = document,.getElementById("voornaam").value;
+alert("welkom" + voornaam);
+
+const baseUrl = "http://localhost:8082/test2";
+
+
+const getData = async function(){
+    try {
+        const response = await fetch (baseUrl, {
+            headers: {
+                "Content-Type": "application/json",
+            }, 
+        });
+        const data = await response.json();
+        return(data);
+    } catch (error) {
+        console.log(error);
+    };
+</script>
+
+<h1 id="terug">Hoi hier gaan we</h1>
+<input id="voornaam">
+<button onclick="mijnfunctie()">klik hier</button>
